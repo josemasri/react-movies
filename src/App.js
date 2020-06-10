@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Container } from "@material-ui/core";
+
+import HomePage from "./pages/HomePage";
+import MoviePage from "./pages/MoviePage";
+import TvShowPage from "./pages/TvShowPage";
+
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header title="MarroMedia" />
+      <Container style={{ minHeight: "75vh" }} fixed>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route exact path="/movie/:id">
+            <MoviePage />
+          </Route>
+          <Route exact path="/tv-show/:id">
+            <TvShowPage />
+          </Route>
+        </Switch>
+      </Container>
+      <Footer title="MarroMedia" />
+    </Router>
   );
 }
 
